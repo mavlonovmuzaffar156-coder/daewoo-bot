@@ -3,10 +3,10 @@ const TelegramBot = require('node-telegram-bot-api');
 // ========================================
 // BOT TOKEN - BotFather dan olingan token
 // ========================================
-const TOKEN = '8909690818:AAHmUtQCVKzO50I_C-ZjAdBqK-y7VSg8uK0';
+const TOKEN = '8909690818:AAFIO6hW2R6GJE1sppqyujhoLxGLCuCMXB4';
 
 const bot = new TelegramBot(TOKEN, { polling: true });
-
+const ADMIN_ID = 6637146490;
 // ========================================
 // DO'KON MA'LUMOTLARI
 // ========================================
@@ -190,7 +190,20 @@ bot.on('message', (msg) => {
     const mahsulot = session.buyurtma_mahsulot || 'Noaniq';
     const mashina = session.buyurtma_mashina || 'Noaniq';
     const yetkazib = session.yetkazib_berish || false;
+bot.sendMessage(
+  ADMIN_ID,
+  `🛒 YANGI BUYURTMA
 
+📦 Mahsulot: ${mahsulot}
+🚗 Mashina: ${mashina}
+📞 Telefon: ${tel}
+
+👤 Ism: ${msg.from.first_name || '-'}
+🔗 Username: @${msg.from.username || 'yoq'}
+🆔 Chat ID: ${chatId}
+
+🚚 Yetkazib berish: ${yetkazib ? 'HA' : 'YO‘Q'}`
+);
     if (yetkazib) {
       bot.sendMessage(chatId,
         `✅ <b>Yetkazib berish buyurtmasi qabul qilindi!</b>\n\n📦 Mahsulot: ${mahsulot}\n🚗 Mashina: ${mashina}\n📞 Raqam: ${tel}\n\n🚚 Operatorimiz manzilni aniqlashtirish uchun siz bilan bog'lanadi!\n\n⏰ Ish vaqti:\n${DOKON.ish_vaqti}`,
